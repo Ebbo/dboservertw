@@ -1,0 +1,83 @@
+004092F0 <-- start address
+
+00E0E0F0  /$  55            PUSH EBP
+00E0E0F1  |.  8BEC          MOV EBP,ESP
+00E0E0F3  |.  83EC 10       SUB ESP,0x10
+00E0E0F6  |>  8B45 08       /MOV EAX,DWORD PTR SS:[EBP+0x8]
+00E0E0F9  |.  50            |PUSH EAX                                ; /Arg1 = 00000018
+00E0E0FA  |.  E8 D1000000   |CALL 00E0E1D0                           ; \DBO.00E0E1D0
+00E0E0FF  |.  83C4 04       |ADD ESP,0x4
+00E0E102  |.  8945 FC       |MOV DWORD PTR SS:[EBP-0x4],EAX
+00E0E105  |.  837D FC 00    |CMP DWORD PTR SS:[EBP-0x4],0x0
+00E0E109  |.  75 5C         |JNZ SHORT 00E0E167                      ;  DBO.00E0E167
+00E0E10B  |.  8B4D 08       |MOV ECX,DWORD PTR SS:[EBP+0x8]
+00E0E10E  |.  51            |PUSH ECX                                ; /Arg1
+00E0E10F  |.  E8 FC1E0100   |CALL 00E20010                           ; \DBO.00E20010
+00E0E114  |.  83C4 04       |ADD ESP,0x4
+00E0E117  |.  85C0          |TEST EAX,EAX
+00E0E119  |.  75 4A         |JNZ SHORT 00E0E165                      ;  DBO.00E0E165
+00E0E11B  |.  8B15 14DB4001 |MOV EDX,DWORD PTR DS:[0x140DB14]
+00E0E121  |.  83E2 01       |AND EDX,0x1
+00E0E124  |.  75 24         |JNZ SHORT 00E0E14A                      ;  DBO.00E0E14A
+00E0E126  |.  A1 14DB4001   |MOV EAX,DWORD PTR DS:[0x140DB14]
+00E0E12B  |.  83C8 01       |OR EAX,0x1
+00E0E12E  |.  A3 14DB4001   |MOV DWORD PTR DS:[0x140DB14],EAX
+00E0E133  |.  B9 08DB4001   |MOV ECX,0x140DB08
+00E0E138  |.  E8 738DFFFF   |CALL 00E06EB0                           ;  DBO.00E06EB0
+00E0E13D  |.  68 00D50101   |PUSH 0x101D500                          ; /Arg1 = 0101D500
+00E0E142  |.  E8 19390000   |CALL 00E11A60                           ; \DBO.00E11A60
+00E0E147  |.  83C4 04       |ADD ESP,0x4
+00E0E14A  |>  68 08DB4001   |PUSH 0x140DB08
+00E0E14F  |.  8D4D F0       |LEA ECX,DWORD PTR SS:[EBP-0x10]
+00E0E152  |.  E8 A93C5FFF   |CALL 00401E00                           ;  DBO.00401E00
+00E0E157  |.  68 18162B01   |PUSH 0x12B1618                          ; /Arg2 = 012B1618
+00E0E15C  |.  8D4D F0       |LEA ECX,DWORD PTR SS:[EBP-0x10]         ; |
+00E0E15F  |.  51            |PUSH ECX                                ; |Arg1
+00E0E160  |.  E8 0B000000   |CALL 00E0E170                           ; \DBO.00E0E170
+00E0E165  |>^ EB 8F         \JMP SHORT 00E0E0F6                      ;  DBO.00E0E0F6
+00E0E167  |>  8B45 FC       MOV EAX,DWORD PTR SS:[EBP-0x4]
+00E0E16A  |.  8BE5          MOV ESP,EBP
+00E0E16C  |.  5D            POP EBP
+00E0E16D  \.  C3            RETN
+
+00E0E230  /$  55            PUSH EBP
+00E0E231  |.  8BEC          MOV EBP,ESP
+00E0E233  |.  51            PUSH ECX
+00E0E234  |>  8B45 18       /MOV EAX,DWORD PTR SS:[EBP+0x18]
+00E0E237  |.  50            |PUSH EAX
+00E0E238  |.  8B4D 14       |MOV ECX,DWORD PTR SS:[EBP+0x14]
+00E0E23B  |.  51            |PUSH ECX
+00E0E23C  |.  8B55 10       |MOV EDX,DWORD PTR SS:[EBP+0x10]
+00E0E23F  |.  52            |PUSH EDX
+00E0E240  |.  8B45 08       |MOV EAX,DWORD PTR SS:[EBP+0x8]
+00E0E243  |.  50            |PUSH EAX
+00E0E244  |.  E8 57000000   |CALL 00E0E2A0                           ;  DBO.00E0E2A0
+00E0E249  |.  83C4 10       |ADD ESP,0x10
+00E0E24C  |.  8945 FC       |MOV DWORD PTR SS:[EBP-0x4],EAX
+00E0E24F  |.  837D FC 00    |CMP DWORD PTR SS:[EBP-0x4],0x0
+00E0E253  |.  74 05         |JE SHORT 00E0E25A                       ;  DBO.00E0E25A
+00E0E255  |.  8B45 FC       |MOV EAX,DWORD PTR SS:[EBP-0x4]
+00E0E258  |.  EB 37         |JMP SHORT 00E0E291                      ;  DBO.00E0E291
+00E0E25A  |>  837D 0C 00    |CMP DWORD PTR SS:[EBP+0xC],0x0
+00E0E25E  |.  75 10         |JNZ SHORT 00E0E270                      ;  DBO.00E0E270
+00E0E260  |.  E8 6BE30000   |CALL 00E1C5D0                           ;  DBO.00E1C5D0
+00E0E265  |.  C700 0C000000 |MOV DWORD PTR DS:[EAX],0xC
+00E0E26B  |.  8B45 FC       |MOV EAX,DWORD PTR SS:[EBP-0x4]
+00E0E26E  |.  EB 21         |JMP SHORT 00E0E291                      ;  DBO.00E0E291
+00E0E270  |>  8B4D 08       |MOV ECX,DWORD PTR SS:[EBP+0x8]
+00E0E273  |.  51            |PUSH ECX                                ; /Arg1
+00E0E274  |.  E8 971D0100   |CALL 00E20010                           ; \DBO.00E20010
+00E0E279  |.  83C4 04       |ADD ESP,0x4
+00E0E27C  |.  85C0          |TEST EAX,EAX
+00E0E27E  |.  75 0F         |JNZ SHORT 00E0E28F                      ;  DBO.00E0E28F
+00E0E280  |.  E8 4BE30000   |CALL 00E1C5D0                           ;  DBO.00E1C5D0
+00E0E285  |.  C700 0C000000 |MOV DWORD PTR DS:[EAX],0xC
+00E0E28B  |.  33C0          |XOR EAX,EAX
+00E0E28D  |.  EB 02         |JMP SHORT 00E0E291                      ;  DBO.00E0E291
+00E0E28F  |>^ EB A3         \JMP SHORT 00E0E234                      ;  DBO.00E0E234
+00E0E291  |>  8BE5          MOV ESP,EBP
+00E0E293  |.  5D            POP EBP
+00E0E294  \.  C3            RETN
+
+
+
